@@ -5,7 +5,7 @@ services:
   - type: web
     name: meeting-backend
     env: docker
-    rrootDir: backend
+    rootDir: backend
     plan: free
     envVars:
       - key: GROQ_API_KEY
