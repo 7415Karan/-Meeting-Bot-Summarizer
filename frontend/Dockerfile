@@ -13,8 +13,14 @@ COPY . /app/
 COPY --from=development-dependencies-env /app/node_modules /app/node_modules
 WORKDIR /app
 ARG VITE_API_URL
-ENV VITE_API_URL=${VITE_API_URL}
-RUN npm run build
+
+# Fix: Prepend https:// if VITE_API_URL is provided but missing protocol (Render provides host only)
+RUN if [ -n "$VITE_API_URL" ] && [ "${VITE_API_URL#http}" = "$VITE_API_URL" ]; then \
+      export VITE_API_URL="https://$VITE_API_URL"; \
+    else \
+      export VITE_API_URL="$VITE_API_URL"; \
+    fi && \
+    npm run build
 
 FROM node:20-alpine
 COPY ./package.json package-lock.json /app/

@@ -18,7 +18,7 @@ services:
         fromService:
           type: web
           name: meeting-frontend
-          property: url
+          property: host
 
   # Frontend Service (React Static Site)
   - type: web
@@ -30,7 +30,7 @@ services:
         fromService:
           type: web
           name: meeting-backend
-          property: url
+          property: host
 
 databases:
   - name: meeting-db
