@@ -5,7 +5,7 @@ services:
   - type: web
     name: meeting-backend
     env: docker
-    root: backend
+    rrootDir: backend
     plan: free
     envVars:
       - key: GROQ_API_KEY
@@ -24,7 +24,7 @@ services:
   - type: web
     name: meeting-frontend
     env: docker
-    root: frontend
+    rootDir: frontend
     envVars:
       - key: VITE_API_URL
         fromService:
