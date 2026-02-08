@@ -5,7 +5,7 @@ services:
   - type: web
     name: meeting-backend
     env: docker
-    rootDir: backend
+    root: backend
     plan: free
     envVars:
       - key: GROQ_API_KEY
@@ -18,19 +18,19 @@ services:
         fromService:
           type: web
           name: meeting-frontend
-          property: host
+          property: url
 
   # Frontend Service (React Static Site)
   - type: web
     name: meeting-frontend
     env: docker
-    rootDir: frontend
+    root: frontend
     envVars:
       - key: VITE_API_URL
         fromService:
           type: web
           name: meeting-backend
-          property: host
+          property: url
 
 databases:
   - name: meeting-db
