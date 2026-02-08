@@ -1,0 +1,16 @@
+__pycache__
+myenv
+.env
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.cache
+.pytest_cache
+meetings.db
+uploads/
