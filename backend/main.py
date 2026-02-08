@@ -24,6 +24,8 @@ app = FastAPI()
 
 # Get the frontend URL from environment variable, or default to local
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+if not FRONTEND_URL.startswith("http"):
+    FRONTEND_URL = f"https://{FRONTEND_URL}"
 
 origins = [
     "http://localhost:5173",

@@ -1,7 +1,9 @@
-// const BASE_URL = "http://127.0.0.1:8000";
-
 // Use environment variable for production, fallback to localhost for dev
-const BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+let BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
+if (!BASE_URL.startsWith("http")) {
+  BASE_URL = `https://${BASE_URL}`;
+}
 
 
 export async function createMeeting(formData: FormData) {

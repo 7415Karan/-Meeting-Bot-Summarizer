@@ -5,7 +5,7 @@ services:
   - type: web
     name: meeting-backend
     env: docker
-    rootDir: backend
+    root: backend
     plan: free
     envVars:
       - key: GROQ_API_KEY
@@ -23,10 +23,8 @@ services:
   # Frontend Service (React Static Site)
   - type: web
     name: meeting-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: build/client
+    env: docker
+    root: frontend
     envVars:
       - key: VITE_API_URL
         fromService:
