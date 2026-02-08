@@ -18,7 +18,7 @@ services:
           property: connectionString
 
   # Frontend Service
-  - type: static
+  - type: static_site
     name: meeting-frontend
     root: frontend
     buildCommand: npm install && npm run build
