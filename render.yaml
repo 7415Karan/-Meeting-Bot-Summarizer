@@ -1,28 +1,27 @@
+version: "1"
+
 services:
-  # Backend Service
+  # Backend Service (FastAPI)
   - type: web
     name: meeting-backend
     env: docker
-    root: backend  
+    root: backend
     plan: free
     envVars:
       - key: GROQ_API_KEY
         sync: false
-      - key: FRONTEND_URL
-        fromService:
-          name: meeting-frontend
-          property: url
       - key: DATABASE_URL
         fromDatabase:
           name: meeting-db
           property: connectionString
 
-  # Frontend Service
-  - type: static_site
+  # Frontend Service (React Static Site)
+  - type: web
     name: meeting-frontend
+    env: static
     root: frontend
     buildCommand: npm install && npm run build
-    publishDir: build/client
+    staticPublishPath: build/client
     envVars:
       - key: VITE_API_URL
         fromService:
@@ -34,5 +33,3 @@ databases:
     plan: free
     databaseName: meetings
     user: admin
-
-version: "1"
